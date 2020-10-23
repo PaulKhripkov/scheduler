@@ -31,7 +31,7 @@ BEGIN
 
     l_sql := '
         select min(date_list) from (
-            select trunc(to_date(''' || PR_CUR_TIME || ''', ''DD.MM.YYYY HH24:MI:SS''), ''HH24'') + (rownum-1)*(interval ''15'' minute) date_list
+            select trunc(to_date(''' || PR_CUR_TIME || ''', ''DD.MM.YY HH24:MI:SS''), ''HH24'') + (rownum-1)*(interval ''15'' minute) date_list
             from dual
             connect by level <= 35712
         )
@@ -40,7 +40,7 @@ BEGIN
               and to_char(date_list, ''d'') in (' || l_weekdays || ')
               and to_char(date_list, ''HH24'') in ('  || l_hours || ')
               and to_char(date_list, ''MI'') in (' || l_quarters || ')
-              and date_list >= to_date(''' || PR_CUR_TIME || ''', ''DD.MM.YYYY HH24:MI:SS'')';
+              and date_list >= to_date(''' || PR_CUR_TIME || ''', ''DD.MM.YY HH24:MI:SS'')';
     
     execute immediate l_sql into l_date;
 
