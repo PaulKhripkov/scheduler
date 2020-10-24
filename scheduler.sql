@@ -31,8 +31,8 @@ BEGIN
 
     l_sql := '
         with t(date_list, next_date, stop) as (
-            select to_char(trunc(to_date(''' || PR_CUR_TIME || '''), ''HH24'')) date_list,
-                   to_char(trunc(to_date(''' || PR_CUR_TIME || '''), ''HH24'') + (interval ''15'' minute)) next_date,
+            select to_char(trunc(to_date(''' || PR_CUR_TIME || ''') - (interval ''1'' hour), ''HH24'')) date_list,
+                   to_char(trunc(to_date(''' || PR_CUR_TIME || ''') - (interval ''1'' hour), ''HH24'') + (interval ''15'' minute)) next_date,
                    0 stop from dual
         
             union all
